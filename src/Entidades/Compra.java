@@ -9,13 +9,18 @@ public class Compra {
     private Proveedor proveedor;
     private LocalDate fecha;
     private boolean activo;
+    private int idProveedor;
 
-    public Compra(int idCompra, Proveedor proveedor, LocalDate fecha, boolean activo) {
+    public Compra(int idCompra, Proveedor proveedor, LocalDate fecha, boolean activo, int idProveedor) {
         this.idCompra = idCompra;
         this.proveedor = proveedor;
         this.fecha = fecha;
-        this.activo = activo;   
+        this.activo = activo;
+        this.idProveedor = idProveedor;
     }
+    
+    
+    
     public Compra(Proveedor proveedor, LocalDate fecha, boolean activo) {
         this.proveedor = proveedor;
         this.fecha = fecha;
@@ -23,6 +28,16 @@ public class Compra {
     }
     public Compra() {
     }
+
+    public int getIdProveedor() {
+        return idProveedor;
+    }
+
+    public void setIdProveedor(int idProveedor) {
+        this.idProveedor = idProveedor;
+    }
+    
+    
 
     public Compra(int idCompra) {
         this.idCompra = idCompra;

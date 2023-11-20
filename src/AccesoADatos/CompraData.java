@@ -11,10 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import AccesoADatos.ProductoData;
+import AccesoADatos.*;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -22,7 +20,7 @@ public class CompraData {
 
     private Connection con = null;
     //private ProveedorData prov = new ProveedorData();
-    private ProductoData prodd = new ProductoData();
+    private ProductoData prod = new ProductoData();
     //private CompraData cmd = new CompraData();
 
     public CompraData() {
@@ -31,20 +29,25 @@ public class CompraData {
 
     }
 
-    public void guardarCompra(Compra comp) {
-        String sql = "INSERT INTO compra (idProveedor,fecha,estado)"
-                + " VALUES (?,?,?)";
+    public void guardarCompra(Compra compra, DetalleCompra dc) {
+        String sql = "INSERT INTO compra (idProveedor, fecha)\n" +
+"VALUES (?,?);\n" +
+"INSERT INTO detallecompra (idProducto, cantidad)\n" +
+"VALUES (?,?);";
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, comp.getProveedor().getIdProveedor());
-            ps.setDate(2, Date.valueOf(comp.getFecha()));
-            ps.setBoolean(3, comp.isActivo());
-            ps.executeUpdate();
+            ps.setInt(1, compra.getIdProveedor());
+            ps.setDate(4, Date.valueOf(compra.getFecha()));
+            //ps.setBoolean(3, compra.isActivo());
+            ps.setInt(4, dc.IdProducto());
+            ps.setInt(5, dc.getCantidad());
+            
+            ps.executeUpdate(); 
 
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
 
-                comp.setIdCompra(rs.getInt(1));
+                compra.setIdCompra(rs.getInt(1));
                 JOptionPane.showMessageDialog(null, "Compra Registrada");
 
             }
@@ -57,17 +60,17 @@ public class CompraData {
 
     }
 
-    public void modificarCompra(Compra comp) {
+    public void modificarCompra(Compra compra) {
 
         String sql = "UPDATE compra SET idProveedor= ?, fecha= ?, estado= ?"
                 + "WHERE idCompra= ?";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, comp.getProveedor().getIdProveedor());
-            ps.setDate(2, Date.valueOf(comp.getFecha()));
-            ps.setBoolean(3, comp.isActivo());
-            ps.setInt(5, comp.getIdCompra());
+            ps.setInt(1, compra.getProveedor().getIdProveedor());
+            ps.setDate(2, Date.valueOf(compra.getFecha()));
+            ps.setBoolean(3, compra.isActivo());
+            ps.setInt(5, compra.getIdCompra());
             int exito = ps.executeUpdate();
             if (exito == 1) {
 

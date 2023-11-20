@@ -8,18 +8,20 @@ public class DetalleCompra {
     private double precioCosto;
     private Compra compra;
     private Producto producto;
+    private int idProducto;
 
     public DetalleCompra() {
     }
     
     
 
-    public DetalleCompra(int idDetalle, int cantidad, double precioCosto, Compra compra, Producto producto) {
+    public DetalleCompra(int idDetalle, int cantidad, double precioCosto, Compra compra, Producto producto, int idProducto) {
         this.idDetalle = idDetalle;
         this.cantidad = cantidad;
         this.precioCosto = precioCosto;
         this.compra = compra;
         this.producto = producto;
+        this.idProducto = idProducto;
     }
     public DetalleCompra(int cantidad, double precioCosto, Compra compra, Producto producto) {
         this.cantidad = cantidad;
@@ -27,6 +29,20 @@ public class DetalleCompra {
         this.compra = compra;
         this.producto = producto;
     }
+
+    public DetalleCompra(int aInt, int aInt0, double aDouble, Compra compra, Producto prod) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public int getIdProducto() {
+        return idProducto;
+    }
+
+    public void setIdProducto(int idProducto) {
+        this.idProducto = idProducto;
+    }
+    
+    
 
     public int getIdDetalle() {
         return idDetalle;
@@ -71,6 +87,10 @@ public class DetalleCompra {
     @Override
     public String toString() {
         return "DetalleCompra{" + "idDetalle=" + idDetalle + ", cantidad=" + cantidad + ", precioCosto=" + precioCosto + ", compra=" + compra + ", producto=" + producto + '}';
+    }
+
+    public int IdProducto() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     
