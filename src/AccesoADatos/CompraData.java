@@ -33,14 +33,14 @@ public class CompraData {
         String sql = "INSERT INTO compra (idProveedor, fecha)\n" +
 "VALUES (?,?);\n" +
 "INSERT INTO detallecompra (idProducto, cantidad)\n" +
-"VALUES (?,?);";
+"VALUES (?,?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, compra.getIdProveedor());
-            ps.setDate(4, Date.valueOf(compra.getFecha()));
+            ps.setDate(2, Date.valueOf(compra.getFecha()));
             //ps.setBoolean(3, compra.isActivo());
-            ps.setInt(4, dc.IdProducto());
-            ps.setInt(5, dc.getCantidad());
+            ps.setInt(3, dc.IdProducto());
+            ps.setInt(4, dc.getCantidad());
             
             ps.executeUpdate(); 
 
@@ -276,4 +276,8 @@ public class CompraData {
 //        return productos;
 //    }
 //}
+
+    public void guardarCompra(Compra compra1) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

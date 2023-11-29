@@ -30,6 +30,13 @@ public class DetalleCompra {
         this.producto = producto;
     }
 
+    public DetalleCompra(int cantidad, int idProducto) {
+        this.cantidad = cantidad;
+        this.idProducto = idProducto;
+    }
+    
+    
+
     public DetalleCompra(int aInt, int aInt0, double aDouble, Compra compra, Producto prod) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

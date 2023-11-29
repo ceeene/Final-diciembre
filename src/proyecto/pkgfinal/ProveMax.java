@@ -1,24 +1,30 @@
 package proyecto.pkgfinal;
 
-import AccesoADatos.CompraData;
 import AccesoADatos.Conexion;
-import AccesoADatos.DetalleCompraData;
 import Entidades.Compra;
 import Entidades.DetalleCompra;
-import Entidades.Proveedor;
 import java.sql.Connection; 
-import java.time.LocalDate; 
-import java.time.Month;
-import java.util.ArrayList; 
-import java.util.List; 
+import java.sql.Date;
 
 public class ProveMax {
 
     public static void main(String[] args) {
         
-         Connection con= Conexion.getConexion();
-         Proveedor pro = new Proveedor(); 
-        
+ Connection con= Conexion.getConexion();
+//         Proveedor pro = new Proveedor(); 
+//
+//Compra compra = new Compra();
+//       compra.setIdProveedor(1);
+////       compra.setFecha(new Date());
+//
+//       DetalleCompra dc = new DetalleCompra();
+//       dc.setIdProducto(1);
+//       dc.setCantidad(5);
+//
+//       // When
+////       guardarCompra(compra, dc);
+//      
+      
         
 
 //        CompraData compData = new CompraData();
@@ -39,8 +45,4 @@ public class ProveMax {
 //      CompraData comp = new CompraData(); 
 //      comp.guardarCompra(compra1);
 
-
-
     }
-
-}

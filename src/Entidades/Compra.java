@@ -18,6 +18,11 @@ public class Compra {
         this.activo = activo;
         this.idProveedor = idProveedor;
     }
+
+    public Compra(LocalDate fecha, int idProveedor) {
+        this.fecha = fecha;
+        this.idProveedor = idProveedor;
+    }
     
     
     
@@ -27,6 +32,10 @@ public class Compra {
         this.activo = activo;   
     }
     public Compra() {
+    }
+
+    public Compra(int i, LocalDate of, int i0, int i1) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public int getIdProveedor() {
