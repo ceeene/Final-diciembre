@@ -300,25 +300,34 @@ public class AgregarProducto extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_botonguardarActionPerformed
 
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
-        try{
+       try{
         Integer id=Integer.parseInt(JTid.getText());
+        
         String nombre=JTnombre.getText();
         String descripcion=JTdescripcion.getText();
-        Integer precio=Integer.parseInt(JTprecio.getText());
-        Integer stock=Integer.parseInt(JTstock.getText());
         
-        if(nombre.isEmpty()|| descripcion.isEmpty()){
+         if(nombre.isEmpty()|| descripcion.isEmpty()){
             JOptionPane.showMessageDialog(this,"No puede haber campos vacios");
             return;
         }
-        
-       
-        Boolean estado=activo.isSelected();
-       
-            
-           productoActual=new Producto ( id,nombre, descripcion, precio, stock );
+         try{
+        double precio=Double.parseDouble(JTprecio.getText());
+         try{
+        Integer stock=Integer.parseInt(JTstock.getText());
+        productoActual=new Producto ( id,nombre, descripcion, precio, stock);
            proData.modificarProducto(productoActual);
+        }catch(NumberFormatException nfb){
+           JOptionPane.showMessageDialog(this,"Debe ingresar un numero de stock");     
+         }
+        }catch(NumberFormatException nfa){
+              JOptionPane.showMessageDialog(this,"Debe ingresar un numero de precio");     
+         }
         
+        
+        
+          
+           
+       
         }catch(NumberFormatException nfe){
             
           JOptionPane.showMessageDialog(this,"Debe ingresar un numero de id valido");     
