@@ -58,6 +58,8 @@ public class Compras extends javax.swing.JInternalFrame {
             }
         });
 
+        JBGuardarCompra.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
+        JBGuardarCompra.setForeground(new java.awt.Color(255, 0, 153));
         JBGuardarCompra.setText("Confirmar Compra");
         JBGuardarCompra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -65,12 +67,20 @@ public class Compras extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Seleccione Proveedor");
 
+        jLabel2.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Seleccione Producto");
 
+        jLabel3.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Cantidad:");
 
+        jLabel4.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Indique fecha de Compra");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -80,7 +90,7 @@ public class Compras extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(119, 119, 119)
                 .addComponent(JBGuardarCompra)
-                .addContainerGap(140, Short.MAX_VALUE))
+                .addContainerGap(134, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,7 +131,7 @@ public class Compras extends javax.swing.JInternalFrame {
                         .addComponent(JDCCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)))
                 .addComponent(JBGuardarCompra)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         pack();
