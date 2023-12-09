@@ -1,10 +1,12 @@
 package proyecto.pkgfinal;
 
+import AccesoADatos.CompraData;
 import AccesoADatos.Conexion;
 import Entidades.Compra;
 import Entidades.DetalleCompra;
 import java.sql.Connection; 
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class ProveMax {
 
@@ -41,9 +43,9 @@ public class ProveMax {
 
       
 
-//      Compra compra1 = new Compra(pro.getIdProveedor(1),LocalDate.of(2023,11,21), true);
-//      CompraData comp = new CompraData(); 
-//      comp.guardarCompra(compra1);
+      Compra compra1 = new Compra(3,LocalDate.of(2023,11,21),2,10);
+      CompraData cd = new CompraData(); 
+      cd.guardarCompra(compra1);
 
     }
     }
