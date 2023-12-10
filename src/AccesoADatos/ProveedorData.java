@@ -176,7 +176,32 @@ public List<Proveedor> obtenerProveedoresActivos(boolean activo){
     return proveedores;
 }
     
+   public  List<Proveedor>listarProveedores(){
+     List<Proveedor> proveedores=new ArrayList<>();
+    try{
+    String sql="SELECT idProveedor, razonSocial, domicilio, telefono FROM proveedor WHERE estado = 1 ";
+   
+    PreparedStatement ps=con.prepareStatement(sql);
+    ResultSet rs=ps.executeQuery();
+    while(rs.next()){
+        
+        Proveedor proveedor=new Proveedor();
+        proveedor.setIdProveedor(rs.getInt("idProveedor"));
+        proveedor.setRazonSocial(rs.getString("razonSocial"));
+        proveedor.setDomicilio(rs.getString("domicilio"));
+        proveedor.setActivo(true);
     
+        proveedor.add(proveedor);
+    }
+    ps.close();
+    
+    }catch (SQLException ex){
+        JOptionPane.showMessageDialog(null,"Error al acceder a la tabla proveedor");
+    }    
+return proveedores;
+   
+    
+} 
     
 }
 

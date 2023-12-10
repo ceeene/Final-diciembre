@@ -5,17 +5,22 @@
  */
 package Vistas;
 
+import AccesoADatos.ProveedorData;
 import Entidades.Producto;
 import Entidades.Proveedor;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 
 public class Compras extends javax.swing.JInternalFrame {
     ImagenFondo fondo=new ImagenFondo();
-//    private CompraData compData=new CompraData();
+    private List<Proveedor> listaP;
+    private ProveedorData proveeData;
+   
+    
 //    private Compra compraActual=null;
     
     
@@ -23,6 +28,9 @@ public class Compras extends javax.swing.JInternalFrame {
     public Compras() {
         this.setContentPane(fondo);
         initComponents();
+         proveeData= new ProveedorData();
+         listaP= proveeData.listarProveedores();
+         cargaIdProveedor();
     }
 
     /**
@@ -177,7 +185,7 @@ public class Compras extends javax.swing.JInternalFrame {
 
     private void JCBProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCBProveedorActionPerformed
 //        Proveedor elegido= (Proveedor)JC.getSelectedItem();
-//        listaInscripcion= inscData.obtenerInscripcionesPorAlumno(elegido.getIdAlumno());
+//        listarProveedores= ProveedorData.obtenerInscripcionesPorAlumno(elegido.getIdProveedor());
 //        if(listaInscripcion.size()>0){
 //            for(Inscripcion insc:listaInscripcion){
 //                modelo.addRow(new Object[]{
@@ -191,9 +199,10 @@ public class Compras extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_JCBProveedorActionPerformed
 
      private void cargaIdProveedor(){
-//        for(Proveedor item: listaA){
-//            JCBProveedor.addItem(item);
+        for(Proveedor item: listaP){
+            JCBProveedor.addItem(item);
         }
+     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBGuardarCompra;
     private javax.swing.JComboBox<Producto> JCBProducto;
