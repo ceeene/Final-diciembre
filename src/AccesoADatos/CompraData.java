@@ -212,6 +212,32 @@ public class CompraData {
         return productos;
 
     }
+    
+    public Compra buscarCompraPorId(int idCompra) {
+        String sql = "SELECT idCompra, idProveedor, fecha FROM compra WHERE idCompra = ?";
+        Compra compra = null;
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idCompra);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                compra = new Compra();
+                compra.setIdCompra(rs.getInt("idCompra"));
+                compra.setProveedor(new Proveedor(rs.getInt("idProveedor")));
+                compra.setFecha(rs.getDate("fecha").toLocalDate());
+                compra.setActivo(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "No existe la compra con esa id.");
+            }
+
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla compra.");
+        }
+        return compra;
+    }
 
 //    public List<Compra> ListaComprasXProveedor(int idProveedor) {
 //

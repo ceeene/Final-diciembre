@@ -175,4 +175,36 @@ return productos;
         }
         return stock;
      }
+        
+        
+        
+        
+        
+        public Producto buscarProductoPorId(int id) {
+        String sql = "SELECT * FROM producto WHERE idProducto = ? AND estado = 1 ";
+        Producto producto = null;
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                producto = new Producto();
+                producto.setIdProducto(rs.getInt("idProducto"));
+                producto.setNombreProducto(rs.getString("nombreProducto"));
+                producto.setDescripcion(rs.getString("descripcion"));
+                producto.setPrecioActual(rs.getInt("precioActual"));
+                producto.setStock(rs.getInt("stock"));
+                producto.setActivo(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "No existe producto con ese id.");
+            }
+
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla producto.");
+        }
+        return producto;
+    }
 }
