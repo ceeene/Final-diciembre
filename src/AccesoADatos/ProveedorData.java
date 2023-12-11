@@ -50,7 +50,7 @@ public class ProveedorData {
             
             
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Error al acceder a la tabla proveedor");
+            JOptionPane.showMessageDialog(null,"Error al acceder a la tabla proveedor en guardar");
             System.out.println(ex.getMessage());
             System.out.println("Codigo de error "+ex.getErrorCode());
         } 
@@ -69,7 +69,7 @@ public class ProveedorData {
                  JOptionPane.showMessageDialog(null, "Proveedor eliminado");
              }
          }catch (SQLException ex){
-         JOptionPane.showMessageDialog(null,"Error al acceder a la tabla de proveedores");
+         JOptionPane.showMessageDialog(null,"Error al acceder a la tabla de proveedores en eliminar");
      }
  } 
    
@@ -96,7 +96,7 @@ public class ProveedorData {
     ps.close();
     
     }catch (SQLException ex){
-        JOptionPane.showMessageDialog(null,"Error al acceder a la tabla de proveedores");
+        JOptionPane.showMessageDialog(null,"Error al acceder a la tabla de proveedores buscar");
     }
 return proveedor;
     }
@@ -118,7 +118,7 @@ public void modificarProveedor (Proveedor proveedor){
 } 
 
 }catch (SQLException ex) {
-JOptionPane.showMessageDialog(null,"Error al acceder a los datos de proveedores");
+JOptionPane.showMessageDialog(null,"Error al acceder a los datos de proveedores en modificar");
 } 
  }
  
@@ -146,7 +146,7 @@ JOptionPane.showMessageDialog(null,"Error al acceder a los datos de proveedores"
     ps.close();
     
     }catch (SQLException ex){
-        JOptionPane.showMessageDialog(null,"Error al acceder a la tabla de proveedores");
+        JOptionPane.showMessageDialog(null,"Error al acceder a la tabla de proveedores buscar por razon social");
     }
 return proveedor;
     }
@@ -171,16 +171,15 @@ public List<Proveedor> obtenerProveedoresActivos(boolean activo){
         ps.close();
         
     }catch (SQLException ex){
-        JOptionPane.showMessageDialog(null, "Error al acceder a la tabla proveedores");
+        JOptionPane.showMessageDialog(null, "Error al acceder a la tabla proveedores obtener proveedores activos");
     }
     return proveedores;
 }
     
    public  List<Proveedor>listarProveedores(){
-     List<Proveedor> proveedores=new ArrayList<>();
+       String sql="SELECT idProveedor, razonSocial, domicilio, telefono FROM proveedor WHERE estado = 1 ";
+      ArrayList<Proveedor> proveedores=new ArrayList<>();
     try{
-    String sql="SELECT idProveedor, razonSocial, domicilio, telefono FROM proveedor WHERE estado = 1 ";
-   
     PreparedStatement ps=con.prepareStatement(sql);
     ResultSet rs=ps.executeQuery();
     while(rs.next()){
@@ -189,16 +188,18 @@ public List<Proveedor> obtenerProveedoresActivos(boolean activo){
         proveedor.setIdProveedor(rs.getInt("idProveedor"));
         proveedor.setRazonSocial(rs.getString("razonSocial"));
         proveedor.setDomicilio(rs.getString("domicilio"));
+        proveedor.setTelefono(rs.getInt("telefono"));
         proveedor.setActivo(true);
     
-        proveedor.add(proveedor);
+        proveedores.add(proveedor);
     }
     ps.close();
     
     }catch (SQLException ex){
-        JOptionPane.showMessageDialog(null,"Error al acceder a la tabla proveedor");
+        JOptionPane.showMessageDialog(null,"Error al acceder a la tabla producto listar proveedor");
     }    
 return proveedores;
+   
    
     
 } 

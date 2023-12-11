@@ -99,12 +99,10 @@ private boolean activo;
 
     @Override
     public String toString() {
-        return "Proveedor{" + "idProveedor=" + idProveedor + ", razonSocial=" + razonSocial + ", domicilio=" + domicilio + ", telefono=" + telefono + ", activo=" + activo + '}';
+        return razonSocial;
     }
 
-    public void add(Proveedor proveedor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+  
   
     
 

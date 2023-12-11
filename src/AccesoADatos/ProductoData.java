@@ -123,7 +123,7 @@ return producto;
      }
  }
        public  List<Producto>listarProducto(){
-    String sql="SELECT idProducto,nombreProducto, descripcion, precioActual, stock FROM producto WHERE estado = 1 ";
+    String sql="SELECT idProducto, nombreProducto, descripcion, precioActual, stock FROM producto WHERE estado = 1 ";
     ArrayList<Producto> productos=new ArrayList<>();
     try{
     PreparedStatement ps=con.prepareStatement(sql);
@@ -132,7 +132,8 @@ return producto;
         
         Producto producto=new Producto();
         producto.setIdProducto(rs.getInt("idProducto"));
-        producto.setNombreProducto(rs.getString("descripcion"));
+        producto.setNombreProducto(rs.getString("nombreProducto"));
+       producto.setDescripcion(rs.getString("descripcion"));
         producto.setPrecioActual(rs.getDouble("precioActual"));
         producto.setStock(rs.getInt("stock"));
         producto.setActivo(true);
@@ -142,7 +143,7 @@ return producto;
     ps.close();
     
     }catch (SQLException ex){
-        JOptionPane.showMessageDialog(null,"Error al acceder a la tabla producto");
+        JOptionPane.showMessageDialog(null,"Error al acceder a la tabla producto listar producto");
     }    
 return productos;
    
@@ -158,18 +159,19 @@ return productos;
            
             ResultSet rs = ps.executeQuery();
          while (rs.next()) {
-             Producto producto=new Producto();
-            producto.setIdProducto(rs.getInt("idProducto"));
-            producto.setNombreProducto(rs.getString("descripcion"));
-            producto.setPrecioActual(rs.getDouble("precioActual"));
-            producto.setStock(rs.getInt("stock"));
-            producto.setActivo(true);
+              Producto producto=new Producto();
+        producto.setIdProducto(rs.getInt("idProducto"));
+        producto.setNombreProducto(rs.getString("nombreProducto"));
+       producto.setDescripcion(rs.getString("descripcion"));
+        producto.setPrecioActual(rs.getDouble("precioActual"));
+        producto.setStock(rs.getInt("stock"));
+        producto.setActivo(true);
     
         stock.add(producto);
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Producto");
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Producto stock minimo");
         }
         return stock;
      }

@@ -19,6 +19,7 @@ import javax.swing.JPanel;
  *
  * @author Usuario
  */
+
 public class AgregarProducto extends javax.swing.JInternalFrame {
     ImagenFondo fondo=new ImagenFondo();
 

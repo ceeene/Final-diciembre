@@ -5,11 +5,13 @@
  */
 package Vistas;
 
+import AccesoADatos.ProductoData;
 import AccesoADatos.ProveedorData;
 import Entidades.Producto;
 import Entidades.Proveedor;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -17,8 +19,13 @@ import javax.swing.JPanel;
 
 public class Compras extends javax.swing.JInternalFrame {
     ImagenFondo fondo=new ImagenFondo();
-    private List<Proveedor> listaP;
-    private ProveedorData proveeData;
+   
+    private ArrayList<Proveedor> listaP;
+    private  ProductoData proData;
+    private ArrayList<Producto> listapro;
+     private  ProveedorData proveeData;
+    
+    
    
     
 //    private Compra compraActual=null;
@@ -29,8 +36,12 @@ public class Compras extends javax.swing.JInternalFrame {
         this.setContentPane(fondo);
         initComponents();
          proveeData= new ProveedorData();
-         listaP= proveeData.listarProveedores();
+         listaP= (ArrayList<Proveedor>)proveeData.listarProveedores();
          cargaIdProveedor();
+         proData= new ProductoData();
+         listapro=(ArrayList<Producto>)proData.listarProducto();
+         cargarProductos();
+    
     }
 
     /**
@@ -57,6 +68,12 @@ public class Compras extends javax.swing.JInternalFrame {
         JCBProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JCBProveedorActionPerformed(evt);
+            }
+        });
+
+        JCBProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JCBProductoActionPerformed(evt);
             }
         });
 
@@ -198,9 +215,18 @@ public class Compras extends javax.swing.JInternalFrame {
 //    }                   
     }//GEN-LAST:event_JCBProveedorActionPerformed
 
+    private void JCBProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCBProductoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JCBProductoActionPerformed
+
      private void cargaIdProveedor(){
         for(Proveedor item: listaP){
             JCBProveedor.addItem(item);
+        }
+     }
+     private void cargarProductos(){
+          for(Producto item: listapro){
+            JCBProducto.addItem(item);
         }
      }
     // Variables declaration - do not modify//GEN-BEGIN:variables
