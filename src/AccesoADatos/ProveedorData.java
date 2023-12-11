@@ -151,34 +151,9 @@ JOptionPane.showMessageDialog(null,"Error al acceder a los datos de proveedores 
 return proveedor;
     }
        
-public List<Proveedor> obtenerProveedoresActivos(boolean activo){
-    ArrayList<Proveedor> proveedores= new ArrayList<>();
-    
-        String sql="SELECT idProveedor, razonSocial, domicilio, telefono, estado FROM proveedor WHERE estado=1 ";
-        try{
-        PreparedStatement ps = con.prepareStatement (sql);
-        ps.setBoolean(1, true);
-        ResultSet rs = ps.executeQuery();
-        while (rs.next()){
-            Proveedor proveedor = new Proveedor();
-            proveedor.setIdProveedor(rs.getInt("idProveedor"));
-            proveedor.setRazonSocial(rs.getString("razonSocial"));
-            proveedor.setDomicilio(rs.getString("domicilio"));
-            proveedor.setTelefono(rs.getInt("telefono"));
-            proveedor.setActivo(rs.getBoolean("estado"));
-            proveedores.add(proveedor);
-        }
-        ps.close();
-        
-    }catch (SQLException ex){
-        JOptionPane.showMessageDialog(null, "Error al acceder a la tabla proveedores obtener proveedores activos");
-    }
-    return proveedores;
-}
-    
-   public  List<Proveedor>listarProveedores(){
-       String sql="SELECT idProveedor, razon Social, domicilio, telefono FROM proveedor WHERE estado = 1 ";
-      ArrayList<Proveedor> proveedores=new ArrayList<>();
+public List<Proveedor> obtenerProveedoresActivos(){
+    String sql="SELECT idProveedor, razonSocial, domicilio, telefono, estado FROM proveedor WHERE estado=1";
+    ArrayList<Proveedor> proveedores=new ArrayList<>();
     try{
     PreparedStatement ps=con.prepareStatement(sql);
     ResultSet rs=ps.executeQuery();
@@ -186,23 +161,22 @@ public List<Proveedor> obtenerProveedoresActivos(boolean activo){
         
         Proveedor proveedor=new Proveedor();
         proveedor.setIdProveedor(rs.getInt("idProveedor"));
-        proveedor.setRazonSocial(rs.getString("razonSocial"));
-        proveedor.setDomicilio(rs.getString("domicilio"));
-        proveedor.setTelefono(rs.getInt("telefono"));
-        proveedor.setActivo(true);
+            proveedor.setRazonSocial(rs.getString("razonSocial"));
+            proveedor.setDomicilio(rs.getString("domicilio"));
+            proveedor.setTelefono(rs.getInt("telefono"));
+            proveedor.setActivo(rs.getBoolean("estado"));
+            proveedores.add(proveedor);
     
-        proveedores.add(proveedor);
-    }
+            }
     ps.close();
     
     }catch (SQLException ex){
-        JOptionPane.showMessageDialog(null,"Error al acceder a la tabla producto listar proveedor");
+        JOptionPane.showMessageDialog(null,"Error al acceder a la tabla producto listar producto");
     }    
 return proveedores;
    
-   
-    
-} 
     
 }
-
+    
+    
+}

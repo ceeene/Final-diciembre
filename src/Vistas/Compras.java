@@ -5,25 +5,31 @@
  */
 package Vistas;
 
+import AccesoADatos.CompraData;
 import AccesoADatos.ProductoData;
 import AccesoADatos.ProveedorData;
+import Entidades.Compra;
 import Entidades.Producto;
 import Entidades.Proveedor;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 
 public class Compras extends javax.swing.JInternalFrame {
     ImagenFondo fondo=new ImagenFondo();
-   
-    private ArrayList<Proveedor> listaP;
+   private ArrayList<Proveedor> listaP;
     private  ProductoData proData;
     private ArrayList<Producto> listapro;
      private  ProveedorData proveeData;
+      private CompraData compData=new CompraData();
+      private Compra compraActual=null;
     
     
    
@@ -33,15 +39,14 @@ public class Compras extends javax.swing.JInternalFrame {
     
     
     public Compras() {
-        this.setContentPane(fondo);
+       this.setContentPane(fondo);
         initComponents();
          proveeData= new ProveedorData();
-         listaP= (ArrayList<Proveedor>)proveeData.listarProveedores();
+         listaP= (ArrayList<Proveedor>)proveeData.obtenerProveedoresActivos();
          cargaIdProveedor();
          proData= new ProductoData();
          listapro=(ArrayList<Producto>)proData.listarProducto();
          cargarProductos();
-    
     }
 
     /**
@@ -167,52 +172,50 @@ public class Compras extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_JTCantidadActionPerformed
 
     private void JBGuardarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBGuardarCompraActionPerformed
-//         try{
-//        Proveedor idProveedor=JCBProveedor.getSelected();
-//        Producto idProducto=JCBProducto.getSelected();
-//        Integer cantidad=Integer.parseInt(JTCantidad.getText());
-//        
+         try{
+        Proveedor idProveedor=(Proveedor)JCBProveedor.getSelectedItem();
+        Producto idProducto=(Producto)JCBProducto.getSelectedItem();
+        Integer cantidad=Integer.parseInt(JTCantidad.getText());
+        java.util.Date cfecha=JDCCompra.getDate();
+       LocalDate fechaCompra=cfecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+       
+//        if (cantidad.isEmpty()){
+//            JOptionPane.showMessageDialog(this, "Debe ingresar una cantidad valida");
 //            return;
-//        
-//        
-////        Boolean estado=JRBEstado.isSelected();
-//        if (compraActual==null){
+//            }
+        
+        if (compraActual==null){
+            
+          compraActual= new Compra (idProveedor, idProducto, cantidad, fechaCompra);
+        compData.guardarCompra(compraActual);
+       
+         }else {
+//            compraActual.setIdProveedor(idProveedor);
+//            compraActual.setidProducto(idProducto);
+//            compraActual.setCantidad(cantidad);
+//            compraActual.setFechaCompra(fechaCompra);
+//            compData.modificarCompra(compraActual);
+        } 
+             
+          }catch(NumberFormatException nfe){
+         JOptionPane.showMessageDialog(this,"Verifique los datos ingresados");           
+            
+                      
+        
+        }
+        
+       //limpiarCampos();
+        
+//            }
+//            JOptionPane.showMessageDialog(this, "Compra realizada con exito");
 //            
-//           compraActual=new Compra(idProveedor, idProducto, cantidad);
-//           compData.guardarCompra(compraActual);
-//            
-////        }else {
-////            compraActual.setIdProveedor(idProveedor);
-////            compraActual.setIdProducto(idProducto);
-////            compraActual.setCantidad(cantidad);
-////            compData.modificarCompra(compraActual);
-////        }
-//        
-//        }catch(NumberFormatException nfe){
-//         JOptionPane.showMessageDialog(this,"Verifique los datos ingresados");   
-//        
-//        }
-//        
-//       //limpiarCampos();
-//        
-//           
 //                                                   
-//
+//         }
+                                                   
     }//GEN-LAST:event_JBGuardarCompraActionPerformed
 
     private void JCBProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCBProveedorActionPerformed
-//        Proveedor elegido= (Proveedor)JC.getSelectedItem();
-//        listarProveedores= ProveedorData.obtenerInscripcionesPorAlumno(elegido.getIdProveedor());
-//        if(listaInscripcion.size()>0){
-//            for(Inscripcion insc:listaInscripcion){
-//                modelo.addRow(new Object[]{
-//                    insc.getMateria().getIdMateria(),
-//                    insc.getMateria().getAsignatura(),
-//                    insc.getNota()
-//                });
-//            }
-//        }    
-//    }                   
+//           
     }//GEN-LAST:event_JCBProveedorActionPerformed
 
     private void JCBProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCBProductoActionPerformed
@@ -243,10 +246,10 @@ public class Compras extends javax.swing.JInternalFrame {
 
      
     
+        
     
-    
-    
-    
+       
+        
     
 
     
@@ -267,5 +270,5 @@ public class Compras extends javax.swing.JInternalFrame {
  }
 
 
-
-}
+        }
+        

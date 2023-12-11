@@ -38,7 +38,6 @@ public class CompraData {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, compra.getIdProveedor());
             ps.setDate(2, Date.valueOf(compra.getFecha()));
-            //ps.setBoolean(3, compra.isActivo());
             ps.setInt(3, dc.IdProducto());
             ps.setInt(4, dc.getCantidad());
             
@@ -59,6 +58,7 @@ public class CompraData {
         }
 
     }
+
 
     public void modificarCompra(Compra compra) {
 

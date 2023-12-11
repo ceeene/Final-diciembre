@@ -38,6 +38,10 @@ public class Compra {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    public Compra(Proveedor idProveedor, Producto idProducto, Integer cantidad, LocalDate fechaCompra) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public int getIdProveedor() {
         return idProveedor;
     }
