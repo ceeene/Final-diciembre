@@ -177,7 +177,7 @@ public List<Proveedor> obtenerProveedoresActivos(boolean activo){
 }
     
    public  List<Proveedor>listarProveedores(){
-       String sql="SELECT idProveedor, razonSocial, domicilio, telefono FROM proveedor WHERE estado = 1 ";
+       String sql="SELECT idProveedor, razon Social, domicilio, telefono FROM proveedor WHERE estado = 1 ";
       ArrayList<Proveedor> proveedores=new ArrayList<>();
     try{
     PreparedStatement ps=con.prepareStatement(sql);
