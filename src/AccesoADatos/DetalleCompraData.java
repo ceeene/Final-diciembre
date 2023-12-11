@@ -52,11 +52,7 @@ public class DetalleCompraData {
 
     }
     
-    
-    
-    
-
-    public List<DetalleCompra> buscarDetallePorCompra(Compra compra) {
+      public List<DetalleCompra> buscarDetallePorCompra(Compra compra) {
         String sql = " SELECT idDetalle, `idCompra`, `cantidad`, `precioCosto`, producto.* FROM `detallecompra` JOIN producto"
                 + " ON (detallecompra.idProducto=producto.idProducto) WHERE idCompra=?";
 
